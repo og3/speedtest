@@ -6,13 +6,16 @@
 # 環境の作成
 conda env create -f environment.yml
 ```
-### Google スプレッドシートの準備
-- 新しいスプレッドシートを作成し、シート名(エクセルでいうとこの「ブック」)を SpeedTest に変更。
+### Google スプレッドシートの準備～その1～
+- 新しいスプレッドシートを作成し、シート名(エクセルでいうとこの「ブック」)を result に変更。
 - A1 に「Timestamp」、B1 に「Download (Mbps)」、C1 に「Upload (Mbps)」と入力。
 ### Google Cloud Console でプロジェクトを作成。
 - Google Sheets API を有効化。
 - サービスアカウント を作成し、JSONキーをダウンロード。
 - そのキーを credentials.json としてローカル(このディレクトリ)に保存。
+### Google スプレッドシートの準備～その2～
+- 上記で作ったサービスアカウントのメールアドレスを「編集者」としてシートを「共有する」にする。
+- 追加するメールアドレスは、作成した credentials.json の client_email の中身の値。
 ### Pythonスクリプトを実行
 ```bash
 python speedtester.py
