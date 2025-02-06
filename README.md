@@ -1,6 +1,5 @@
 ## 概要
-- 30分に一度speedtest-cli --secureを実行してGoogleSpreadSheetに結果を記録するスクリプト
-
+　30分に一度speedtest-cli --secureを実行してGoogleSpreadSheetに結果を記録するスクリプト。
 ## セットアップ
 ### スクリプトの実行に必要なライブラリをインストールしたconda環境を作る
 ```
