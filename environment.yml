@@ -1,0 +1,10 @@
+name: speedtest_env  # 環境名（変更可）
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9
+  - speedtest-cli
+  - gspread
+  - oauth2client
+  - python-dotenv
