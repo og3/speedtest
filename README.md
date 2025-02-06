@@ -17,6 +17,8 @@ conda env create -f environment.yml
 ```bash
 python speedtester.py
 ```
+### 結果
+![スクリーンショット 2025-02-06 143658](https://github.com/user-attachments/assets/e791796e-479b-4366-837b-c07d36721694)
 ## トラブルシュート
 　カスタマイズするときの参考に。
 ### ファイル名がspeedtest.pyだとライブラリと名前衝突する
