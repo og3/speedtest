@@ -3,7 +3,10 @@
 
 ## セットアップ
 ### スクリプトの実行に必要なライブラリをインストールしたconda環境を作る
-
+```
+# 環境の作成
+conda env create -f environment.yml
+```
 ### Google スプレッドシートの準備
 - 新しいスプレッドシートを作成し、シート名(エクセルでいうとこの「ブック」)を SpeedTest に変更。
 - A1 に「Timestamp」、B1 に「Download (Mbps)」、C1 に「Upload (Mbps)」と入力。
