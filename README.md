@@ -5,6 +5,8 @@
 ```
 # 環境の作成
 conda env create -f environment.yml
+# 環境の立ち上げ
+conda activate speedtest_env
 ```
 ### Google スプレッドシートの準備～その1～
 - 新しいスプレッドシートを作成し、シート名(エクセルでいうとこの「ブック」)を result に変更。
