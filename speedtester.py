@@ -1,10 +1,10 @@
 import os
-from dotenv import load_dotenv
 import time
 import speedtest
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime
+from dotenv import load_dotenv
 
 # .env を読み込む
 load_dotenv()
@@ -26,20 +26,37 @@ sheet = client.open_by_key(SPREADSHEET_ID).worksheet("result")
 
 
 def run_speed_test():
-    st = speedtest.Speedtest(secure=True)
-    st.get_best_server()
+    """ネット速度を計測する関数"""
+    try:
+        st = speedtest.Speedtest(secure=True)
+        st.get_best_server()
 
-    download_speed = st.download() / 1_000_000  # Mbpsに変換
-    upload_speed = st.upload() / 1_000_000  # Mbpsに変換
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        download_speed = st.download() / 1_000_000  # Mbpsに変換
+        upload_speed = st.upload() / 1_000_000  # Mbpsに変換
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    return [timestamp, round(download_speed, 2), round(upload_speed, 2)]
+        return [timestamp, round(download_speed, 2), round(upload_speed, 2)]
+
+    except Exception as e:
+        print(f"Speedtest error: {e}")
+        return None
 
 
 def log_speed_to_sheet():
-    data = run_speed_test()
-    sheet.append_row(data)
-    print(f"Logged: {data}")
+    """計測データをスプレッドシートに記録する関数"""
+    try:
+        data = run_speed_test()
+        if data:
+            sheet.append_row(data)
+            print(f"Logged: {data}")
+        else:
+            print("Speedtest failed, skipping this round.")
+
+    except gspread.exceptions.APIError as e:
+        print(f"Google Sheets API error: {e}")
+
+    except Exception as e:
+        print(f"Unexpected error: {e}")
 
 
 if __name__ == "__main__":
