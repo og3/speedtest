@@ -42,3 +42,24 @@ speedtest.Speedtest
 speedtest.Speedtest(secure=True)
 => おｋ
 ```
+## cronを使って1週間定点観測する
+### 編集モードを開く
+```bash
+crontab -e
+```
+### ライフチェックと復活の設定
+```bash
+*/5 * * * * pgrep -f speedtester.py || nohup python3 /path/to/speedtester.py > /path/to/speedtester.log 2>&1 &
+```
+```
+*/5 * * * * → 5分ごとに実行
+pgrep -f speedtest.py → スクリプトが動いているかチェック
+||（OR条件）→ 動いてなかったら実行
+nohup python3 /path/to/speedtest.py & → バックグラウンドで実行
+> /path/to/speedtest.log 2>&1 → ログを speedtest.log に保存（デバッグ用）
+```
+### 設定の確認
+```bash
+crontab -l
+```
+ここに登録されてたらおk
